@@ -23,6 +23,7 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
     setSelectedSong(song);
     const audio = audioRef.current;
     if (audio) {
+      createAudioContext();
       audio.src = `/audio/${song.title}.mp3`;
       audio.currentTime = song.start;
 
