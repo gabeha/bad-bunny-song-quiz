@@ -34,7 +34,7 @@ const SongOverview = ({
             key={index}
             onClick={() => handleSetSelectedSong(song)}
             className={cn(
-              "flex justify-between w-full px-2",
+              "flex justify-between w-full px-2 text-sm",
               song.title === selectedSong.title
                 ? "bg-black text-green-400"
                 : "text-white"

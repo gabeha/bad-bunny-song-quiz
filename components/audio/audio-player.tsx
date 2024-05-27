@@ -51,7 +51,7 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
   }, [audioContext, audioRef, sourceNode]);
 
   return (
-    <div className=" bg-gray-300 p-4 rounded-b-[3rem] rounded-t-xl shadow-xl aspect-[4/3] max-w-5xl flex flex-col justify-between">
+    <div className="bg-gray-300 p-4 rounded-b-[3rem] rounded-t-xl shadow-xl aspect-[4/3] max-w-3xl flex flex-col justify-between">
       <div>
         <h1 className="text-2xl font-semibold">Audio Player</h1>
       </div>
