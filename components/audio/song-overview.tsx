@@ -1,7 +1,6 @@
 import { readJson } from "@/app/actions/getSongData";
-import React from "react";
+import { cn, formatSecondsBetween } from "@/lib/utils";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 type SongData = Awaited<ReturnType<typeof readJson>>[number];
 type SongOverviewProps = {
@@ -42,7 +41,9 @@ const SongOverview = ({
             )}
           >
             <span className="font-semibold">{song.title}</span>
-            <span className="font-semibold">3:27</span>
+            <span className="font-semibold">
+              {formatSecondsBetween(song.start, song.end)}
+            </span>
           </button>
         ))}
       </div>

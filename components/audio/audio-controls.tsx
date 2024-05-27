@@ -1,8 +1,8 @@
+import { readJson } from "@/app/actions/getSongData";
 import { Pause, Play, Repeat, Volume1, Volume2, VolumeX } from "lucide-react";
-import moment from "moment";
 import React from "react";
 import { Slider } from "../ui/slider";
-import { readJson } from "@/app/actions/getSongData";
+import { formatTime, formatSecondsBetween } from "@/lib/utils";
 
 type SongData = Awaited<ReturnType<typeof readJson>>[number];
 
@@ -62,10 +62,6 @@ const AudioControls = ({
     }
   };
 
-  const formatTime = (time: number) => {
-    return moment.utc(time * 1000).format("mm:ss");
-  };
-
   React.useEffect(() => {
     const handleDocumentKeyDown = (event: KeyboardEvent) => {
       if (event.key === "MediaPlayPause") {
@@ -83,16 +79,18 @@ const AudioControls = ({
 
   React.useEffect(() => {
     const handleTimeUpdate = () => {
-      if (audioRef.current!.currentTime >= songData.end) {
-        if (loop) {
-          audioRef.current!.currentTime = songData.start;
-        } else {
-          audioRef.current!.currentTime = songData.start;
-          audioRef.current?.pause();
-          setPlaying(false);
+      if (audioRef.current?.currentTime) {
+        if (audioRef.current!.currentTime >= songData.end) {
+          if (loop) {
+            audioRef.current!.currentTime = songData.start;
+          } else {
+            audioRef.current!.currentTime = songData.start;
+            audioRef.current?.pause();
+            setPlaying(false);
+          }
         }
+        setTime(audioRef.current!.currentTime);
       }
-      setTime(audioRef.current!.currentTime);
     };
 
     const handleAudioEvents = () => {
@@ -149,7 +147,16 @@ const AudioControls = ({
             )}
             <span>Song: {songData.title}</span>
           </div>
-          <span>{formatTime(audioRef.current?.currentTime ?? 0)}</span>
+          {/* <span>{formatTime(audioRef.current?.currentTime ?? 0)}</span>
+           */}
+          <span>
+            {formatTime(
+              audioRef.current?.currentTime
+                ? audioRef.current?.currentTime - songData.start
+                : 0
+            )}{" "}
+            / {formatSecondsBetween(songData.start, songData.end)}
+          </span>
         </div>
         <Slider
           defaultValue={[songData.start]}

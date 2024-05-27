@@ -55,7 +55,7 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
       <div>
         <h1 className="text-2xl font-semibold">Audio Player</h1>
       </div>
-      <div className="grid grid-cols-3 h-full overflow-hidden">
+      <div className="grid grid-cols-3 h-full overflow-hidden border-r-2 border-r-gray-600 border-t-2 border-t-gray-300">
         <div className="col-span-2 min-h-full">
           <AudioVisualiser
             audioRef={audioRef}
