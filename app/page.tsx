@@ -1,5 +1,6 @@
 import { ScrollableImages } from "@/components/scrollable-images";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Maximize } from "lucide-react";
 import Link from "next/link";
 
@@ -44,9 +45,15 @@ const Home = () => {
           </Link>
         </div>
         <div className="w-full flex-grow flex items-end justify-center p-8 gap-6 border-2 border-gray-900 bg-xp bg-cover">
-          <Button className="rounded-none bg-gray-300 border-r-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white text-gray-800 hover:bg-gray-300 hover:text-gray-800 hover:scale-95 text-xl">
+          <Link
+            href={"/quiz"}
+            className={cn(
+              buttonVariants({}),
+              "rounded-none bg-gray-300 border-r-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white text-gray-800 hover:bg-gray-300 hover:text-gray-800 hover:scale-95 text-xl"
+            )}
+          >
             Start Quiz
-          </Button>
+          </Link>
         </div>
       </div>
     </div>
