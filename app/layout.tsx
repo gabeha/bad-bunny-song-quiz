@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Orbitron } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import Navbar from "@/components/navbar";
 
 const orbitron = Orbitron({ subsets: ["latin"] });
 
@@ -29,7 +30,10 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(orbitron.className, "bg-yellow-300")}>
-        {children}
+        <Navbar />
+        <main className="flex flex-col h-screen items-center justify-center container">
+          {children}
+        </main>
         <Toaster />
       </body>
     </html>
