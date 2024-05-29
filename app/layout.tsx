@@ -36,7 +36,7 @@ export default function RootLayout({
         )}
       >
         <Navbar />
-        <main className="flex-col h-screen items-center justify-center containers hidden xl:flex">
+        <main className="flex-col h-screen items-center justify-center container hidden xl:flex">
           {children}
         </main>
         <main className="flex-col h-screen items-center justify-end container flex xl:hidden p-4">
