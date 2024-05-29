@@ -75,14 +75,26 @@ const Disclaimer = async () => {
         </p>
         <p>Thank you for your understanding and cooperation.</p>
         <br />
-        <h2 className="text-3xl">Source Videos</h2>
+        <h2 className="text-3xl">Sources</h2>
+        <p>The images used on this website were sourced from:</p>
+        <ul>
+          <li>
+            <a
+              href="https://imgur.com/hvorfor-tage-til-nord-s-nder-eller-st-jylland-n-r-du-kan-opleve-dette-foran-sk-rmen-uGRFZEs"
+              className="underline"
+            >
+              Windows XP background
+            </a>
+          </li>
+        </ul>
+        <br />
         <p>
           The audio excerpts on this website were sourced from the following
           YouTube videos:
         </p>
         <ul>
           {songData.map((song) => (
-            <li>
+            <li key={song.title}>
               <a href={song.url} target="_blank" className="underline">
                 {song.title}
               </a>{" "}

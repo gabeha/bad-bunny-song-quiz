@@ -23,6 +23,7 @@ const config = {
       backgroundImage: {
         mobile: "url('/mobile-bad-bunny-bg.png')",
         desktop: "url('/bad-bunny-bg.png')",
+        xp: "url('/xp.png')",
       },
       colors: {
         border: "hsl(var(--border))",
