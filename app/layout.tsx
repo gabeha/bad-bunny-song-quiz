@@ -32,14 +32,14 @@ export default function RootLayout({
       <body
         className={cn(
           orbitron.className,
-          "bg-mobile 2xl:bg-desktop 2xl:bg-cover 2xl:bg-center"
+          "bg-mobile xl:bg-desktop xl:bg-cover xl:bg-center"
         )}
       >
         <Navbar />
-        <main className="flex-col h-screen items-center justify-center containers hidden 2xl:flex">
+        <main className="flex-col h-screen items-center justify-center containers hidden xl:flex">
           {children}
         </main>
-        <main className="flex-col h-screen items-start justify-end container flex 2xl:hidden p-4">
+        <main className="flex-col h-screen items-center justify-end container flex xl:hidden p-4">
           <p className="text-white font-bold text-4xl">
             Mobile not supported.*
           </p>
