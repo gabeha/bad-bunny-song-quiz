@@ -80,7 +80,8 @@ export function GuessSong({
         })
         .map((song) => song.title)
     );
-  }, [form.control._fields]);
+    setSelectedSuggestion("");
+  }, [form.control._fields, allSongs, songsGuessed]);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     if (!selectedSong) return;

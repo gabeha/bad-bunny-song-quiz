@@ -70,12 +70,12 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
   }, [audioContext, audioRef, sourceNode]);
 
   return (
-    <div className="bg-gray-300 p-4 rounded-b-[3rem] rounded-t-xl shadow-xl aspect-[4/3] max-w-4xl flex flex-col justify-between">
+    <div className="bg-gray-300 p-4 rounded-b-[3rem] rounded-t-xl shadow-xl max-w-4xl h-fit flex flex-col justify-between">
       <div>
         <h1 className="text-2xl font-semibold">Audio Player</h1>
       </div>
       <div className="grid grid-cols-3 h-full overflow-hidden border-r-2 border-r-gray-600 border-t-2 border-t-gray-300">
-        <div className="col-span-2 min-h-full">
+        <div className="col-span-2">
           <AudioVisualiser
             audioRef={audioRef}
             audioContext={audioContext}

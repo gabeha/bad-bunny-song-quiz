@@ -52,10 +52,10 @@ export function QuizSuggestions({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0 rounded-none border-x-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white bg-gray-100 ">
+      <PopoverContent className="w-[300px] p-0 rounded-none border-x-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white">
         <Command>
           <CommandInput
-            placeholder="Search song..."
+            placeholder="Type song name..."
             value={value}
             onValueChange={(inputValue) => onChange(inputValue)}
           />

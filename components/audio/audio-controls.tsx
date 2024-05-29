@@ -101,7 +101,7 @@ const AudioControls = ({
 
   // reset controls if audioref changes
   React.useEffect(() => {
-    console.log("resetting controls");
+    // console.log("resetting controls");
     setPlaying(false);
     setTime(0);
   }, [songData]);

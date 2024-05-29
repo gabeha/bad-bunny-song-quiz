@@ -126,7 +126,7 @@ const AudioVisualiser = ({
   };
 
   return (
-    <div className="relative w-full h-full min-h-96 bg-black">
+    <div className="relative w-full h-full min-h-96 min-w-fit bg-black">
       <canvas
         ref={canvasRef}
         onClick={handleCanvasClick}
