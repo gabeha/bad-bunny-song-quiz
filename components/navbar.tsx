@@ -19,7 +19,7 @@ const Navbar = () => {
   const pathname = usePathname();
   console.log(pathname);
   return (
-    <NavigationMenu className="w-full mx-auto fixed top-10 inset-x-0">
+    <NavigationMenu className="w-full mx-auto absolute top-10 inset-x-0 hidden 2xl:block">
       <NavigationMenuList className="gap-10 text-3xl">
         {navigationLinks.map((link) => (
           <NavigationMenuItem key={link.label}>

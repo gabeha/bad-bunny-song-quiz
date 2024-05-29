@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -19,6 +20,10 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        mobile: "url('/mobile-bad-bunny-bg.png')",
+        desktop: "url('/bad-bunny-bg.png')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -244,9 +244,9 @@ const AudioControls = ({
             aria-label={playing ? "Pause audio" : "Play audio"}
           >
             {playing ? (
-              <Pause className="fill-current text-gray-700" />
+              <Pause className="fill-current text-gray-700 w-4 h-4 xl:w-8 xl:h-8" />
             ) : (
-              <Play className="fill-current text-gray-700" />
+              <Play className="fill-current text-gray-700 w-4 h-4 xl:w-8 xl:h-8" />
             )}
           </button>
           <div className="flex w-full items-center gap-2 text-gray-700">
@@ -258,11 +258,11 @@ const AudioControls = ({
               aria-label={loop ? "Disable loop" : "Enable loop"}
             >
               {muted ? (
-                <VolumeX className="w-10 h-10" />
+                <VolumeX className="w-6 h-6 xl:w-8 xl:h-8" />
               ) : !muted && volume! < 0.6 ? (
-                <Volume1 className="w-10 h-10" />
+                <Volume1 className="w-6 h-6 xl:w-8 xl:h-8" />
               ) : (
-                <Volume2 className="w-10 h-10" />
+                <Volume2 className="w-6 h-6 xl:w-8 xl:h-8" />
               )}
             </button>
             <Slider
@@ -283,7 +283,7 @@ const AudioControls = ({
             aria-pressed={loop}
             aria-label={loop ? "Disable loop" : "Enable loop"}
           >
-            <Repeat className="w-8 h-8" />
+            <Repeat className="w-6 h-6 xl:w-8 xl:h-8" />
           </button>
           {variant === "player" && (
             <button
@@ -293,16 +293,16 @@ const AudioControls = ({
               role="button"
               aria-label="Shuffle songs"
             >
-              <Shuffle className="w-8 h-8 mr-2" />
+              <Shuffle className="w-6 h-6 xl:w-8 xl:h-8 mr-2" />
             </button>
           )}
         </div>
         {variant === "quiz" && (
           <Button
             onClick={shuffleSongs}
-            className="rounded-none bg-gray-300 border-r-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white text-gray-800 hover:bg-gray-300 hover:text-gray-800 hover:scale-95"
+            className="rounded-none bg-gray-300 border-r-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white text-gray-800 hover:bg-gray-300 hover:text-gray-800 hover:scale-95 text-xs xl:text-sm"
           >
-            <Shuffle className="w-8 h-8 mr-2" />
+            <Shuffle className="w-4 h-4 xl:w-8 xl:h-8 mr-2" />
             Shuffle New Song
           </Button>
         )}

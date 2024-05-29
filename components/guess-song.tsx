@@ -136,7 +136,7 @@ export function GuessSong({
             name="songtitle"
             render={({ field, fieldState }) => (
               <FormItem className="flex flex-col items-center justify-between">
-                <FormLabel className="font-bold italic text-6xl bg-gradient-to-r from-red-500 via-yellow-400 to-purple-600 text-transparent bg-clip-text w-full text-center mb-4 py-4">
+                <FormLabel className="font-bold italic text-2xl xl:text-6xl bg-gradient-to-r from-red-500 via-yellow-400 to-purple-600 text-transparent bg-clip-text w-full text-center xl:mb-4 xl:py-4 py-2">
                   Which song is this?
                 </FormLabel>
                 <div className="flex gap-4 relative">

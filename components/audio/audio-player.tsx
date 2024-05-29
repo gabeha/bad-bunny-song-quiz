@@ -73,7 +73,7 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
   }, [audioContext, audioRef, sourceNode]);
 
   return (
-    <div className="bg-gray-300 p-4 rounded-b-[3rem] rounded-t-xl shadow-xl max-w-4xl h-fit flex flex-col justify-between">
+    <div className="bg-gray-300 p-4 rounded-b-[3rem] rounded-t-xl shadow-xl max-w-2xl xl:max-w-4xl h-fit flex flex-col justify-between">
       <div className="mb-2 flex w-full justify-between items-center">
         <h1 className="text-2xl font-semibold">
           The Ultimate Yeh-Yeh-Yeh Quiz
