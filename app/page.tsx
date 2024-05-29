@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="flex h-full w-full items-center justify-between gap-4 ">
       <ScrollableImages />
-      <div className="bg-gray-200 flex flex-col h-1/2 w-full border-r-4 border-r-gray-400 border-b-4 border-b-gray-400 border-l-4 border-l-white border-t-4 border-t-white p-2">
+      <div className="bg-gray-200 flex flex-col xl:h-2/3 w-full border-r-4 border-r-gray-400 border-b-4 border-b-gray-400 border-l-4 border-l-white border-t-4 border-t-white p-2">
         <div className="w-full bg-blue-800 h-8 flex items-center justify-between p-1">
           <div>
             <span className="text-white font-semibold">

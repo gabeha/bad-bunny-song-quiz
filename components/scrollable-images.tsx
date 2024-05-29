@@ -41,7 +41,7 @@ export function ScrollableImages() {
 
   return (
     <div
-      className="relative h-1/2 overflow-auto no-scrollbar rounded-lg border-2 border-gray-300 bg-gray-100 shadow-xl "
+      className="relative h-2/3 overflow-auto no-scrollbar rounded-lg border-2 border-gray-300 bg-gray-100 shadow-xl "
       ref={scrollableDivRef}
     >
       <div className="sticky top-4 flex justify-center ">
