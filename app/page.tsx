@@ -1,3 +1,4 @@
+import { QuizSuggestions } from "@/components/quiz-suggestions";
 import Link from "next/link";
 
 export default async function Home() {

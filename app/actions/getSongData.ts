@@ -9,6 +9,7 @@ export async function readJson(): Promise<
     url: string;
     start: number;
     end: number;
+    duration: number;
   }[]
 > {
   const jsonFilePath = path.join(process.cwd(), "public", "songs.json");

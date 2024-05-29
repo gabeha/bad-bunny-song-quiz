@@ -1,18 +1,25 @@
-import React, { useRef, useEffect } from "react";
+import { readJson } from "@/app/actions/getSongData";
+import { Play } from "lucide-react";
+import React, { useRef, useEffect, useState } from "react";
 
 interface AudioVisualiserProps {
   audioRef: React.RefObject<HTMLAudioElement>;
   audioContext: AudioContext | null;
+  createAudioContext: () => AudioContext | null;
   sourceNode: MediaElementAudioSourceNode | null;
+  songData: Awaited<ReturnType<typeof readJson>>[number] | null;
 }
 
 const AudioVisualiser = ({
   audioRef,
   audioContext,
+  createAudioContext,
   sourceNode,
+  songData,
 }: AudioVisualiserProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const analyzer = useRef<AnalyserNode | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   let animationController: number | null;
 
   useEffect(() => {
@@ -23,12 +30,14 @@ const AudioVisualiser = ({
     }
 
     const handlePlay = () => {
+      setIsPlaying(true);
       if (!animationController) {
         visualizeData();
       }
     };
 
     const handlePause = () => {
+      setIsPlaying(false);
       if (animationController) {
         cancelAnimationFrame(animationController);
         animationController = null;
@@ -96,13 +105,47 @@ const AudioVisualiser = ({
         ctx.lineTo(x, height - y);
       });
 
-      ctx.strokeStyle = "rgba(0, 128, 255, 1)";
+      ctx.strokeStyle = "rgba(253, 224, 71,1)";
       ctx.lineWidth = 2;
       ctx.stroke();
     }
   };
 
-  return <canvas ref={canvasRef} className="w-full h-full min-h-96 bg-black" />;
+  const handleCanvasClick = () => {
+    if (!songData) return;
+    createAudioContext();
+    if (audioRef.current?.paused) {
+      audioRef.current.currentTime = Math.max(
+        audioRef.current.currentTime,
+        songData.start
+      );
+      audioRef.current?.play();
+    } else {
+      audioRef.current?.pause();
+    }
+  };
+
+  return (
+    <div className="relative w-full h-full min-h-96 bg-black">
+      <canvas
+        ref={canvasRef}
+        onClick={handleCanvasClick}
+        className="w-full h-full"
+      />
+      {!isPlaying && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <button
+            onClick={handleCanvasClick}
+            className="shrink-0 grow-0 play-pause-button"
+            tabIndex={0}
+            role="button"
+          >
+            <Play className="fill-current text-gray-700 h-20 w-20 text-y" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default AudioVisualiser;

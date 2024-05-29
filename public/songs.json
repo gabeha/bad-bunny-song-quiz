@@ -5,7 +5,8 @@
     "album": "Yonaguni",
     "url": "https://www.youtube.com/watch?v=doLMt10ytHY&ab_channel=BadBunny",
     "start": 0,
-    "end": 10
+    "end": 10,
+    "duration": 208
   },
   {
     "title": "Si Estuviésemos Juntos",
@@ -13,7 +14,8 @@
     "album": "X 100PRE",
     "url": "https://www.youtube.com/watch?v=EB7G3fUUaeA&ab_channel=BadBunny",
     "start": 1,
-    "end": 11
+    "end": 11,
+    "duration": 174
   },
   {
     "title": "BYE ME FUI",
@@ -21,7 +23,8 @@
     "album": "LAS QUE NO IBAN A SALIR",
     "url": "https://www.youtube.com/watch?v=Ts_pOxNJtVg&ab_channel=BadBunny",
     "start": 3,
-    "end": 9
+    "end": 9,
+    "duration": 178
   },
   {
     "title": "Vete",
@@ -29,7 +32,8 @@
     "album": "Vete",
     "url": "https://www.youtube.com/watch?v=f5aDUB1NCnk&ab_channel=BadBunny",
     "start": 14,
-    "end": 23
+    "end": 23,
+    "duration": 217
   },
   {
     "title": "Infeliz",
@@ -37,7 +41,8 @@
     "album": "Historias de un Capricornio",
     "url": "https://www.youtube.com/watch?v=DMrFMuUcM4o&ab_channel=Arcangel",
     "start": 52,
-    "end": 55
+    "end": 55,
+    "duration": 221
   },
   {
     "title": "ANTES QUE SE ACABE",
@@ -45,7 +50,8 @@
     "album": "EL ÚLTIMO TOUR DEL MUNDO",
     "url": "https://www.youtube.com/watch?v=7pUlMZcFw4g&ab_channel=BadBunny",
     "start": 9,
-    "end": 19.5
+    "end": 19.5,
+    "duration": 221
   },
   {
     "title": "Neverita",
@@ -53,7 +59,8 @@
     "album": "Un Verano Sin Ti",
     "url": "https://www.youtube.com/watch?v=ARWg160eaX4&ab_channel=BadBunny",
     "start": 60.5,
-    "end": 64
+    "end": 64,
+    "duration": 184
   },
   {
     "title": "Efecto",
@@ -61,7 +68,8 @@
     "album": "Un Verano Sin Ti",
     "url": "https://www.youtube.com/watch?v=Nk8C9FdCdJQ&ab_channel=BadBunny",
     "start": 0,
-    "end": 9
+    "end": 9,
+    "duration": 208
   },
   {
     "title": "Enséñame a Bailar",
@@ -69,7 +77,8 @@
     "album": "Un Verano Sin Ti",
     "url": "https://www.youtube.com/watch?v=eopPKANmKyg&ab_channel=BadBunny",
     "start": 2,
-    "end": 9
+    "end": 9,
+    "duration": 213
   },
   {
     "title": "Después de la Playa",
@@ -77,7 +86,8 @@
     "album": "Un Verano Sin Ti",
     "url": "https://www.youtube.com/watch?v=a5rlgE6dcBY&ab_channel=BadBunny",
     "start": 4,
-    "end": 13
+    "end": 13,
+    "duration": 231
   },
   {
     "title": "Me Porto Bonito",
@@ -85,7 +95,8 @@
     "album": "Un Verano Sin Ti",
     "url": "https://www.youtube.com/watch?v=saGYMhApaH8&ab_channel=BadBunny",
     "start": 15,
-    "end": 21
+    "end": 21,
+    "duration": 191
   },
   {
     "title": "Una Vez",
@@ -93,7 +104,8 @@
     "album": "YHLQMDLG",
     "url": "https://www.youtube.com/watch?v=gSMYGP0TYC4&ab_channel=BadBunny",
     "start": 155,
-    "end": 160
+    "end": 160,
+    "duration": 280
   },
   {
     "title": "Party",
@@ -101,7 +113,8 @@
     "album": "Un Verano Sin Ti",
     "url": "https://www.youtube.com/watch?v=G9XrXnfJPsk&ab_channel=BadBunny",
     "start": 46,
-    "end": 48.5
+    "end": 48.5,
+    "duration": 228
   },
   {
     "title": "Callaita",
@@ -109,15 +122,17 @@
     "album": "Un Verano Sin Ti",
     "url": "https://www.youtube.com/watch?v=acEOASYioGY&ab_channel=BadBunny",
     "start": 179,
-    "end": 183
+    "end": 183,
+    "duration": 252
   },
   {
-    "title": "MIA (feat. Drake)",
+    "title": "MIA",
     "artist": "Bad Bunny, Drake",
     "album": "MIA (feat. Drake)",
     "url": "https://www.youtube.com/watch?v=OSUxrSe5GbI&ab_channel=BadBunny",
     "start": 3,
-    "end": 9
+    "end": 9,
+    "duration": 211
   },
   {
     "title": "Te Boté - Remix",
@@ -125,7 +140,8 @@
     "album": "Te Boté (Remix)",
     "url": "https://www.youtube.com/watch?v=9jI-z9QN6g8&ab_channel=FlowLaMovie",
     "start": 382,
-    "end": 387
+    "end": 387,
+    "duration": 422
   },
   {
     "title": "No Me Conoce - Remix",
@@ -133,7 +149,8 @@
     "album": "Famouz",
     "url": "https://www.youtube.com/watch?v=w2C6RhQBYlg&ab_channel=JhayCortezVEVO",
     "start": 9,
-    "end": 12.5
+    "end": 12.5,
+    "duration": 306
   },
   {
     "title": "Moscow Mule",
@@ -141,6 +158,7 @@
     "album": "Un Verano Sin Ti",
     "url": "https://www.youtube.com/watch?v=p38WgakuYDo&ab_channel=BadBunny",
     "start": 176.5,
-    "end": 185
+    "end": 185,
+    "duration": 252
   }
 ]

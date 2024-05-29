@@ -1,6 +1,7 @@
 import { readJson } from "@/app/actions/getSongData";
 import { cn, formatSecondsBetween } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 type SongData = Awaited<ReturnType<typeof readJson>>[number];
 type SongOverviewProps = {
@@ -24,9 +25,7 @@ const SongOverview = ({
           height={100}
           className="w-2/3 mb-1"
         />
-        <span className="text-white font-semibold">
-          The Bad Bunny Song Quiz
-        </span>
+        <span className="text-white font-semibold">Your Guessed Songs</span>
       </div>
       <div className="flex flex-col items-start w-full overflow-auto flex-grow">
         {songData.map((song, index) => (
@@ -35,7 +34,7 @@ const SongOverview = ({
             onClick={() => handleSetSelectedSong(song)}
             className={cn(
               "flex justify-between w-full px-2 text-sm",
-              song.title === selectedSong.title
+              song.title === selectedSong?.title
                 ? "bg-black text-green-400"
                 : "text-white"
             )}
@@ -46,6 +45,15 @@ const SongOverview = ({
             </span>
           </button>
         ))}
+        {songData.length === 0 && (
+          <span className="text-white text-center">
+            No songs guessed yet. Head over to the{" "}
+            <Link href={"/quiz"} className="text-blue-300 underline">
+              Quiz
+            </Link>{" "}
+            to start guessing!
+          </span>
+        )}
       </div>
     </div>
   );
