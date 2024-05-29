@@ -145,7 +145,7 @@ const AudioQuiz = ({ songData }: AudioQuizProps) => {
       ) : songsToGuess.length === 0 && !isLoading ? (
         <div className="flex flex-col items-center justify-center gap-4">
           <p className="text-3xl font-semibold">
-            You've guessed all the songs! 🎉
+            You&apos;ve guessed all the songs! 🎉
           </p>
           <div className="flex gap-2">
             <Link

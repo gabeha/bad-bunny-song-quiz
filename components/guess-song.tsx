@@ -157,7 +157,8 @@ export function GuessSong({
                   </Button>
                 </div>
                 <FormDescription className="text-base">
-                  If you guess correctly, you'll unlock the entire song in the{" "}
+                  If you guess correctly, you&apos;ll unlock the entire song in
+                  the{" "}
                   <Link href="/player" className="text-blue-500 underline">
                     music player
                   </Link>

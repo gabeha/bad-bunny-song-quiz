@@ -5,6 +5,9 @@ import AudioVisualiser from "./audio-visualiser";
 import { readJson } from "@/app/actions/getSongData";
 import SongOverview from "./song-overview";
 import { useQuizStore } from "@/stores/quizStore";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "../ui/button";
 
 type SongData = Awaited<ReturnType<typeof readJson>>;
 
@@ -71,8 +74,19 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
 
   return (
     <div className="bg-gray-300 p-4 rounded-b-[3rem] rounded-t-xl shadow-xl max-w-4xl h-fit flex flex-col justify-between">
-      <div>
-        <h1 className="text-2xl font-semibold">Audio Player</h1>
+      <div className="mb-2 flex w-full justify-between items-center">
+        <h1 className="text-2xl font-semibold">
+          The Ultimate Yeh-Yeh-Yeh Quiz
+        </h1>
+        <Link
+          href={"/quiz"}
+          className={cn(
+            buttonVariants({}),
+            "rounded-none bg-gray-300 border-r-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white text-gray-800 hover:bg-gray-300 hover:text-gray-800 hover:scale-95"
+          )}
+        >
+          Play Quiz
+        </Link>
       </div>
       <div className="grid grid-cols-3 h-full overflow-hidden border-r-2 border-r-gray-600 border-t-2 border-t-gray-300">
         <div className="col-span-2">
