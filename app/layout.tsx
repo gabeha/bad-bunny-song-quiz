@@ -35,8 +35,8 @@ export default function RootLayout({
           "bg-mobile xl:bg-desktop xl:bg-cover xl:bg-center"
         )}
       >
-        <Navbar />
-        <main className="flex-col h-screen items-center justify-center container flex">
+        <main className="flex-col h-screen items-center justify-start container flex">
+          <Navbar />
           {children}
         </main>
         <Toaster />

@@ -1,50 +1,42 @@
 import { ScrollableImages } from "@/components/scrollable-images";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import WindowWrapper, { LinkbarProps } from "@/components/window-wrapper";
 import { cn } from "@/lib/utils";
-import { Maximize } from "lucide-react";
 import Link from "next/link";
+
+const links: LinkbarProps[] = [
+  {
+    external: true,
+    href: "https://gabrielhauss.com",
+    label: "My Website",
+  },
+  {
+    external: true,
+    href: "https://open.spotify.com/playlist/1uh30dUr8o40UqwqW6zRhk?si=91a077f751854361",
+    label: "Playlist",
+  },
+  {
+    external: false,
+    href: "/disclaimer",
+    label: "Disclaimer",
+  },
+];
 
 const Home = () => {
   return (
-    <div className="flex h-full w-full items-center justify-between gap-4 ">
-      <ScrollableImages />
-      <div className="bg-gray-200 flex flex-col xl:h-2/3 w-full border-r-4 border-r-gray-400 border-b-4 border-b-gray-400 border-l-4 border-l-white border-t-4 border-t-white p-2">
-        <div className="w-full bg-blue-800 h-8 flex items-center justify-between p-1">
-          <div>
-            <span className="text-white font-semibold">
-              🌎 Welcome to my Bad Bunny Quiz
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="bg-gray-200 h-6 w-6 text-center">_</div>
-            <div className="bg-gray-200 h-6 w-6 flex flex-col items-center justify-center">
-              <Maximize className="h-5 w-5" />
-            </div>
-            <div className="bg-gray-200 h-6 w-6 flex flex-col items-center justify-center">
-              x
-            </div>
-          </div>
-        </div>
-        <div className="w-full h-8 flex items-center justify-start p-1 gap-6 ml-4">
-          <a
-            href="https://gabrielhauss.com"
-            target="_blank"
-            className="text-gray-700 underline"
-          >
-            My Website
-          </a>
-          <a
-            href="https://open.spotify.com/playlist/1uh30dUr8o40UqwqW6zRhk?si=91a077f751854361"
-            target="_blank"
-            className="text-gray-700 underline"
-          >
-            Playlist
-          </a>
-          <Link href={"/disclaimer"} className="text-gray-700 underline">
-            Disclaimer
-          </Link>
-        </div>
-        <div className="w-full flex-grow flex items-end justify-center p-8 gap-6 border-2 border-gray-900 bg-xp bg-cover">
+    <div className="flex-col flex flex-grow lg:flex-row h-full w-full items-center justify-between gap-4 py-4">
+      <WindowWrapper title="❓ The why" links={links} className="order-1">
+        <ScrollableImages />
+      </WindowWrapper>
+      <WindowWrapper
+        title={"🌎 Bad Bunny Quiz"}
+        links={links}
+        className="order-2"
+      >
+        <div className="w-full h-full flex flex-col flex-grow justify-evenly items-center p-6">
+          <p className="text-xl text-gray-800 italic font-bold">
+            Test your knowledge of Bad Bunny's most iconic Yeh-Yeh-Yehs
+          </p>
           <Link
             href={"/quiz"}
             className={cn(
@@ -55,7 +47,7 @@ const Home = () => {
             Start Quiz
           </Link>
         </div>
-      </div>
+      </WindowWrapper>
     </div>
   );
 };

@@ -19,14 +19,14 @@ const Navbar = () => {
   const pathname = usePathname();
   console.log(pathname);
   return (
-    <NavigationMenu className="w-full mx-auto absolute top-10 inset-x-0 hidden xl:block">
+    <NavigationMenu className="w-full mx-auto inset-x-0 block">
       <NavigationMenuList className="gap-10 text-3xl">
         {navigationLinks.map((link) => (
           <NavigationMenuItem key={link.label}>
             <Link href={link.href} legacyBehavior passHref>
               <NavigationMenuLink
                 className={cn(
-                  "text-blue-500 underline",
+                  "text-blue-500 underline text-xl lg:text-4xl",
                   pathname === link.href ? "text-purple-500" : ""
                 )}
               >
