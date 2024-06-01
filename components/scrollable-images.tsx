@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { ArrowDown, ArrowUp } from "lucide-react";
 
-const images = ["rewind3.png", "rewind5.png", "rewind1.png", "rewind2.png"];
+const images = ["rewind3.jpg", "rewind5.jpg", "rewind1.jpg", "rewind2.jpg"];
 
 export function ScrollableImages() {
   const scrollableDivRef = useRef<HTMLDivElement | null>(null);
