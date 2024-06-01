@@ -24,7 +24,7 @@ const WindowWrapper = ({
   return (
     <div
       className={cn(
-        "bg-gray-200 flex flex-col h-1/2 xl:h-2/3 w-full border-r-4 border-r-gray-400 border-b-4 border-b-gray-400 border-l-4 border-l-white border-t-4 border-t-white p-2 overflow-hidden",
+        "bg-gray-200 flex flex-col h-1/2 xl:h-full w-full border-r-4 border-r-gray-400 border-b-4 border-b-gray-400 border-l-4 border-l-white border-t-4 border-t-white p-2 overflow-hidden",
         className
       )}
     >
@@ -45,6 +45,7 @@ const WindowWrapper = ({
       <div className="w-full h-8 flex items-center justify-start p-1 gap-6 ml-4">
         {links.map((link) => (
           <a
+            key={link.label}
             href={link.href}
             target={link.external ? "_blank" : ""}
             className="text-gray-700 underline"

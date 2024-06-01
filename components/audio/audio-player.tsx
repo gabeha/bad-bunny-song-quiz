@@ -73,11 +73,9 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
   }, [audioContext, audioRef, sourceNode]);
 
   return (
-    <div className="bg-gray-300 p-4 rounded-b-[3rem] rounded-t-xl shadow-xl max-w-2xl xl:max-w-4xl h-fit flex flex-col justify-between">
+    <div className="bg-gray-300 p-4 rounded-b-[3rem] h-full w-full rounded-t-xl shadow-xl flex flex-col justify-between">
       <div className="mb-2 flex w-full justify-between items-center">
-        <h1 className="text-2xl font-semibold">
-          The Ultimate Yeh-Yeh-Yeh Quiz
-        </h1>
+        <h1 className="text-2xl font-semibold">Audio Player</h1>
         <Link
           href={"/quiz"}
           className={cn(
@@ -88,8 +86,8 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
           Play Quiz
         </Link>
       </div>
-      <div className="grid grid-cols-3 h-full overflow-hidden border-r-2 border-r-gray-600 border-t-2 border-t-gray-300">
-        <div className="col-span-2">
+      <div className="grid grid-rows-2 lg:grid-rows-1 grid-cols-1 lg:grid-cols-3 h-full overflow-hidden border-r-2 border-r-gray-600 border-t-2 border-t-gray-300">
+        <div className="col-span-1 lg:col-span-2">
           <AudioVisualiser
             audioRef={audioRef}
             audioContext={audioContext}
@@ -98,7 +96,7 @@ const AudioPlayer = ({ songData }: AudioPlayerProps) => {
             songData={selectedSong}
           />
         </div>
-        <div className="col-span-1 min-h-full flex flex-col overflow-auto">
+        <div className="h-full flex flex-col overflow-hidden">
           <SongOverview
             songData={songData.filter((song) =>
               songsGuessed.map((song) => song.title).includes(song.title)

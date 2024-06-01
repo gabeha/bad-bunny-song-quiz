@@ -177,22 +177,22 @@ const AudioControls = ({
   };
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center ">
+    <div className="flex flex-col gap-4 justify-center items-center w-full">
       <div className="w-full space-y-1">
-        <div className="text-green-500 font-semibold text-sm bg-black rounded-b-xl px-2 py-1 flex justify-between">
-          <div className="flex items-center gap-2">
+        <div className="text-green-500 font-semibold text-xs lg:text-sm bg-black rounded-b-xl px-2 py-1 flex justify-between w-full">
+          <div className="flex items-center gap-2 w-full">
             {playing ? (
               <Pause className="fill-current text-green-500 h-4 w-4" />
             ) : (
               <Play className="fill-current text-green-5000 h-4 w-4" />
             )}
             {variant === "player" && (
-              <span>
-                Song: {songData ? songData.title : "No song selected"}
+              <span className="w-2/3 truncate">
+                {songData ? songData.title : "No song selected"}
               </span>
             )}
           </div>
-          <span>
+          <span className="w-full text-end">
             {formatTime(
               audioRef.current?.currentTime && songData
                 ? audioRef.current?.currentTime - songData.start
@@ -227,85 +227,67 @@ const AudioControls = ({
           step={0.01}
         />
       </div>
-      <div
-        className={cn(
-          "w-full flex items-center gap-4 ",
-          variant === "player" ? "justify-center" : "justify-between"
-        )}
-      >
-        <div className="flex items-center w-96 gap-4">
+      <div className="w-full flex items-center gap-4 lg:w-[450px]">
+        <button
+          onClick={toggleAudio}
+          onKeyDown={handleKeyDown}
+          className="play-pause-button shrink-0 grow-0"
+          tabIndex={0}
+          role="button"
+          aria-pressed={playing}
+          aria-label={playing ? "Pause audio" : "Play audio"}
+        >
+          {playing ? (
+            <Pause className="fill-current text-gray-700 w-4 h-4 xl:w-8 xl:h-8" />
+          ) : (
+            <Play className="fill-current text-gray-700 w-4 h-4 xl:w-8 xl:h-8" />
+          )}
+        </button>
+        <div className="flex w-full items-center gap-2 text-gray-700">
           <button
-            onClick={toggleAudio}
-            onKeyDown={handleKeyDown}
-            className="play-pause-button shrink-0 grow-0"
-            tabIndex={0}
-            role="button"
-            aria-pressed={playing}
-            aria-label={playing ? "Pause audio" : "Play audio"}
-          >
-            {playing ? (
-              <Pause className="fill-current text-gray-700 w-4 h-4 xl:w-8 xl:h-8" />
-            ) : (
-              <Play className="fill-current text-gray-700 w-4 h-4 xl:w-8 xl:h-8" />
-            )}
-          </button>
-          <div className="flex w-full items-center gap-2 text-gray-700">
-            <button
-              onClick={toggleMute}
-              tabIndex={0}
-              role="button"
-              aria-pressed={loop}
-              aria-label={loop ? "Disable loop" : "Enable loop"}
-            >
-              {muted ? (
-                <VolumeX className="w-6 h-6 xl:w-8 xl:h-8" />
-              ) : !muted && volume! < 0.6 ? (
-                <Volume1 className="w-6 h-6 xl:w-8 xl:h-8" />
-              ) : (
-                <Volume2 className="w-6 h-6 xl:w-8 xl:h-8" />
-              )}
-            </button>
-            <Slider
-              defaultValue={[audioRef.current?.volume ?? 1]}
-              value={muted ? [0] : [volume]}
-              onValueChange={(value) => adjustVolume(value)}
-              max={1}
-              step={0.01}
-            />
-          </div>
-          <button
-            onClick={toggleLoop}
-            className={`shrink-0 grow-0 ${
-              loop ? "text-green-500" : "text-gray-700"
-            }`}
+            onClick={toggleMute}
             tabIndex={0}
             role="button"
             aria-pressed={loop}
             aria-label={loop ? "Disable loop" : "Enable loop"}
           >
-            <Repeat className="w-6 h-6 xl:w-8 xl:h-8" />
+            {muted ? (
+              <VolumeX className="w-6 h-6 xl:w-8 xl:h-8" />
+            ) : !muted && volume! < 0.6 ? (
+              <Volume1 className="w-6 h-6 xl:w-8 xl:h-8" />
+            ) : (
+              <Volume2 className="w-6 h-6 xl:w-8 xl:h-8" />
+            )}
           </button>
-          {variant === "player" && (
-            <button
-              onClick={shuffleSongs}
-              className="shrink-0 grow-0 text-gray-700"
-              tabIndex={0}
-              role="button"
-              aria-label="Shuffle songs"
-            >
-              <Shuffle className="w-6 h-6 xl:w-8 xl:h-8 mr-2" />
-            </button>
-          )}
+          <Slider
+            defaultValue={[audioRef.current?.volume ?? 1]}
+            value={muted ? [0] : [volume]}
+            onValueChange={(value) => adjustVolume(value)}
+            max={1}
+            step={0.01}
+          />
         </div>
-        {variant === "quiz" && (
-          <Button
-            onClick={shuffleSongs}
-            className="rounded-none bg-gray-300 border-r-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white text-gray-800 hover:bg-gray-300 hover:text-gray-800 hover:scale-95 text-xs xl:text-sm"
-          >
-            <Shuffle className="w-4 h-4 xl:w-8 xl:h-8 mr-2" />
-            Shuffle New Song
-          </Button>
-        )}
+        <button
+          onClick={toggleLoop}
+          className={`shrink-0 grow-0 ${
+            loop ? "text-green-500" : "text-gray-700"
+          }`}
+          tabIndex={0}
+          role="button"
+          aria-pressed={loop}
+          aria-label={loop ? "Disable loop" : "Enable loop"}
+        >
+          <Repeat className="w-6 h-6 xl:w-8 xl:h-8" />
+        </button>
+        <button
+          onClick={shuffleSongs}
+          className="shrink-0 grow-0 text-gray-700"
+          tabIndex={0}
+          role="button"
+          aria-label="Shuffle songs"
+        >
+          <Shuffle className="w-6 h-6 xl:w-8 xl:h-8 mr-2" />
+        </button>
       </div>
     </div>
   );

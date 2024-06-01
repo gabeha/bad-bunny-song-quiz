@@ -32,13 +32,17 @@ export default function RootLayout({
       <body
         className={cn(
           orbitron.className,
-          "bg-mobile xl:bg-desktop xl:bg-cover xl:bg-center"
+          "bg-mobile lg:bg-desktop lg:bg-cover lg:bg-center"
         )}
       >
-        <main className="flex-col h-screen items-center justify-start container flex">
-          <Navbar />
-          {children}
-        </main>
+        <div className="flex flex-col h-screen w-full py-4 gap-4">
+          <div className="h-8 lg:h-16">
+            <Navbar />
+          </div>
+          <main className="flex-grow h-[calc(100%-64px)] overflow-y-auto flex-col items-center justify-start container p-2 lg:p-4 flex w-full">
+            {children}
+          </main>
+        </div>
         <Toaster />
       </body>
     </html>

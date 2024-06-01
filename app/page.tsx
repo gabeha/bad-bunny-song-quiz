@@ -24,7 +24,7 @@ const links: LinkbarProps[] = [
 
 const Home = () => {
   return (
-    <div className="flex-col flex flex-grow lg:flex-row h-full w-full items-center justify-between gap-4 py-4">
+    <div className="flex-col flex flex-grow lg:flex-row h-full w-full items-center justify-between gap-4">
       <WindowWrapper title="❓ The why" links={links} className="order-1">
         <ScrollableImages />
       </WindowWrapper>
@@ -34,8 +34,9 @@ const Home = () => {
         className="order-2"
       >
         <div className="w-full h-full flex flex-col flex-grow justify-evenly items-center p-6">
-          <p className="text-xl text-gray-800 italic font-bold">
-            Test your knowledge of Bad Bunny's most iconic Yeh-Yeh-Yehs
+          <p className="text-xl lg:text-4xl text-gray-800 italic font-bold">
+            Test your knowledge of Bad Bunny&aposs most iconic <br />{" "}
+            Yeh-Yeh-Yehs
           </p>
           <Link
             href={"/quiz"}

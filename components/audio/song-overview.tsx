@@ -17,13 +17,13 @@ const SongOverview = ({
 }: SongOverviewProps) => {
   return (
     <div className="flex flex-col flex-grow items-center bg-gray-500 shadow-inner overflow-hidden">
-      <div className="w-full flex flex-col items-center my-4">
+      <div className="w-full hidden lg:flex flex-col items-center my-4">
         <Image
           src={"/albumcovers.png"}
           alt={"albumcovers"}
           width={100}
           height={100}
-          className="w-2/3 mb-1"
+          className="w-1/3 mb-1"
         />
         <span className="text-white font-semibold">Your Guessed Songs</span>
       </div>
@@ -33,7 +33,7 @@ const SongOverview = ({
             key={index}
             onClick={() => handleSetSelectedSong(song)}
             className={cn(
-              "flex justify-between w-full px-2 text-sm",
+              "flex justify-between w-full px-2 text-base",
               song.title === selectedSong?.title
                 ? "bg-black text-green-400"
                 : "text-white"

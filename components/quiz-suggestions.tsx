@@ -42,7 +42,7 @@ export function QuizSuggestions({
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "rounded-none border-x-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white bg-gray-100 w-[300px] justify-between",
+            "rounded-none border-x-2 border-r-gray-400 border-b-2 border-b-gray-400 border-l-2 border-l-white border-t-2 border-t-white bg-gray-100 justify-between w-full",
             error ? "input-error border-red-500" : ""
           )}
         >
