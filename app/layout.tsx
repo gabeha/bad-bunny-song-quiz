@@ -36,24 +36,8 @@ export default function RootLayout({
         )}
       >
         <Navbar />
-        <main className="flex-col h-screen items-center justify-center container hidden xl:flex">
+        <main className="flex-col h-screen items-center justify-center container flex">
           {children}
-        </main>
-        <main className="flex-col h-screen items-center justify-end container flex xl:hidden p-4">
-          <p className="text-white font-bold text-4xl">
-            Mobile not supported.*
-          </p>
-          <p className="text-white font-bold text-xl">
-            *This project was not about responsive design, read about it{" "}
-            <a
-              href="https://gabrielhauss.com"
-              target="_blank"
-              className="underline text-blue-500"
-            >
-              here
-            </a>{" "}
-            or check it out yourself on desktop.
-          </p>
         </main>
         <Toaster />
       </body>
