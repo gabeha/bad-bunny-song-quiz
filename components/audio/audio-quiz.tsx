@@ -96,10 +96,11 @@ const AudioQuiz = ({ songData }: AudioQuizProps) => {
   return (
     <>
       {selectedSong ? (
-        <div className="bg-gray-300 p-4 rounded-b-[3rem] h-full rounded-t-xl shadow-xl max-w-2xl xl:max-w-4xl flex flex-col justify-between">
+        <div className="bg-gray-300 p-4 rounded-b-[3rem] h-full w-full rounded-t-xl shadow-xl flex flex-col justify-between overflow-auto">
           <div className="mb-2 flex w-full justify-between items-center">
-            <h1 className="text-2xl font-semibold">
-              The Ultimate Yeh-Yeh-Yeh Quiz
+            <h1 className="text-base lg:text-2xl font-semibold">
+              The Ultimate <br className="lg:hidden" />
+              Yeh-Yeh-Yeh Quiz
             </h1>
             <Button
               onClick={resetSongs}
@@ -118,29 +119,33 @@ const AudioQuiz = ({ songData }: AudioQuizProps) => {
               total={songData.length}
             />
           </div>
-          <>
-            <AudioVisualiser
-              audioRef={audioRef}
-              audioContext={audioContext}
-              createAudioContext={createAudioContext}
-              sourceNode={sourceNode}
-              songData={selectedSong}
-            />
+          <div className="grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2 flex-grow gap-8 w-full h-full">
+            <div className="h-full w-full flex flex-col">
+              <AudioVisualiser
+                audioRef={audioRef}
+                audioContext={audioContext}
+                createAudioContext={createAudioContext}
+                sourceNode={sourceNode}
+                songData={selectedSong}
+              />
 
-            <audio ref={audioRef} src={`/audio/${selectedSong.title}.mp3`} />
-            <AudioControls
-              audioRef={audioRef}
-              createAudioContext={createAudioContext}
-              songData={selectedSong}
-              shuffleSongs={shuffleSongs}
-              variant="quiz"
-            />
-            <GuessSong
-              allSongs={songsToGuess}
-              selectedSong={selectedSong}
-              nextSong={moveToNextSong}
-            />
-          </>
+              <audio ref={audioRef} src={`/audio/${selectedSong.title}.mp3`} />
+              <AudioControls
+                audioRef={audioRef}
+                createAudioContext={createAudioContext}
+                songData={selectedSong}
+                shuffleSongs={shuffleSongs}
+                variant="quiz"
+              />
+            </div>
+            <div>
+              <GuessSong
+                allSongs={songsToGuess}
+                selectedSong={selectedSong}
+                nextSong={moveToNextSong}
+              />
+            </div>
+          </div>
         </div>
       ) : songsToGuess.length === 0 && !isLoading ? (
         <div className="flex flex-col items-center justify-center gap-4">

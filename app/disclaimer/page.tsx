@@ -1,25 +1,34 @@
 import { Maximize } from "lucide-react";
 import React from "react";
 import { readJson } from "../actions/getSongData";
+import WindowWrapper, { LinkbarProps } from "@/components/window-wrapper";
+
+const links: LinkbarProps[] = [
+  {
+    external: true,
+    href: "https://gabrielhauss.com",
+    label: "My Website",
+  },
+  {
+    external: true,
+    href: "https://open.spotify.com/playlist/1uh30dUr8o40UqwqW6zRhk?si=91a077f751854361",
+    label: "Playlist",
+  },
+  {
+    external: false,
+    href: "/disclaimer",
+    label: "Disclaimer",
+  },
+];
 
 const Disclaimer = async () => {
   const songData = await readJson();
   return (
-    <div className="w-1/2 overflow-hidden h-2/3 text-lg bg-gray-200 border-r-4 border-r-gray-400 border-b-4 border-b-gray-400 border-l-4 border-l-white border-t-4 border-t-white">
-      <div className="w-full bg-blue-800 h-8 flex items-center justify-between p-1">
-        <div>
-          <span className="text-white font-semibold">🎓 Legal Notice</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <div className="bg-gray-200 h-6 w-6 text-center">_</div>
-          <div className="bg-gray-200 h-6 w-6 flex flex-col items-center justify-center">
-            <Maximize className="h-5 w-5" />
-          </div>
-          <div className="bg-gray-200 h-6 w-6 flex flex-col items-center justify-center">
-            x
-          </div>
-        </div>
-      </div>
+    <WindowWrapper
+      title={"Your correct guesses so far"}
+      links={links}
+      className="h-full"
+    >
       <div className="p-2 h-full overflow-auto">
         <h1 className="text-6xl">Disclaimer</h1>
         <br />
@@ -103,7 +112,7 @@ const Disclaimer = async () => {
           ))}
         </ul>
       </div>
-    </div>
+    </WindowWrapper>
   );
 };
 

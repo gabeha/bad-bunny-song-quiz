@@ -2,10 +2,15 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const images = ["rewind3.png", "rewind5.png", "rewind1.png", "rewind2.png"];
+const images = ["rewind3.jpg", "rewind5.jpg", "rewind1.jpg", "rewind2.jpg"];
 
-export function ScrollableImages() {
+interface ScrollableImagesProps {
+  className?: string;
+}
+
+export function ScrollableImages({ className }: ScrollableImagesProps) {
   const scrollableDivRef = useRef<HTMLDivElement | null>(null);
   const [isScrolledToTop, setIsScrolledToTop] = useState(true);
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
@@ -41,7 +46,7 @@ export function ScrollableImages() {
 
   return (
     <div
-      className="relative h-2/3 overflow-auto no-scrollbar rounded-lg border-2 border-gray-300 bg-gray-100 shadow-xl "
+      className="relative overflow-auto no-scrollbar shadow-xl m-4"
       ref={scrollableDivRef}
     >
       <div className="sticky top-4 flex justify-center ">

@@ -67,15 +67,17 @@ const AudioVisualiser = ({
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     if (ctx) {
-      const devicePixelRatio = window.devicePixelRatio || 1;
+      const devicePixelRatio = 1;
       const width = canvas.clientWidth * devicePixelRatio;
       const height = canvas.clientHeight * devicePixelRatio;
 
       if (canvas.width !== width || canvas.height !== height) {
+        console.log("Resizing canvas");
         canvas.width = width;
         canvas.height = height;
       }
 
+      console.log(width, height, devicePixelRatio);
       ctx.clearRect(0, 0, width, height);
 
       const smoothedData = [];
@@ -126,7 +128,7 @@ const AudioVisualiser = ({
   };
 
   return (
-    <div className="relative w-full h-full min-h-96 min-w-fit bg-black">
+    <div className="relative w-full h-full bg-black">
       <canvas
         ref={canvasRef}
         onClick={handleCanvasClick}
@@ -140,7 +142,7 @@ const AudioVisualiser = ({
             tabIndex={0}
             role="button"
           >
-            <Play className="fill-current text-gray-700 h-20 w-20 text-y" />
+            <Play className="fill-current text-gray-700 h-20 w-20" />
           </button>
         </div>
       )}

@@ -19,19 +19,19 @@ interface GuessModalProps {
 export function GuessModal({ isOpen, closeDialog, songData }: GuessModalProps) {
   return (
     <AlertDialog open={isOpen}>
-      <AlertDialogContent>
+      <AlertDialogContent className="w-3/4 lg:w-full">
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-4xl ">
+          <AlertDialogTitle className="text-xl lg:text-4xl w-full">
             <span className="bg-gradient-to-r from-red-500 via-yellow-400 to-purple-600 text-transparent bg-clip-text">
               Congratulations!
             </span>{" "}
             🎉
           </AlertDialogTitle>
-          <div className="text-base">
+          <div className="text-base w-full">
             <p>You really know your Music! 🎶</p>
             <p>
               This is indeed{" "}
-              <span className="italic font-bold bg-gradient-to-r from-red-500 via-yellow-400 to-purple-600 text-transparent bg-clip-text text-xl">
+              <span className="italic font-bold bg-gradient-to-r from-red-500 via-yellow-400 to-purple-600 text-transparent bg-clip-text text-lg lg:text-xl">
                 {songData?.title}{" "}
               </span>{" "}
               by {songData?.artist} 🐰
