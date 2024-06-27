@@ -24,11 +24,7 @@ const links: LinkbarProps[] = [
 const Disclaimer = async () => {
   const songData = await readJson();
   return (
-    <WindowWrapper
-      title={"Your correct guesses so far"}
-      links={links}
-      className="h-full"
-    >
+    <WindowWrapper title={"🎓 Legal Notice"} links={links} className="h-full">
       <div className="p-2 h-full overflow-auto">
         <h1 className="text-6xl">Disclaimer</h1>
         <br />
