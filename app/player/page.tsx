@@ -31,7 +31,7 @@ export default async function Home() {
     };
   });
   return (
-    <WindowWrapper title={"🎓 Legal Notice"} links={links} className="h-full">
+    <WindowWrapper title={"🎹 Your Songs"} links={links} className="h-full">
       <div className="h-full p-2 lg:p-8 w-full">
         <AudioPlayer songData={newSongData} />
       </div>
