@@ -25,6 +25,11 @@ export default function SiteHeader() {
         <Link to="/leaderboard" className="underline-offset-2 hover:underline">
           Leaderboard
         </Link>
+        {user && (
+          <Link to="/collection" className="underline-offset-2 hover:underline">
+            Collection
+          </Link>
+        )}
         {isAdmin && (
           <Link to="/admin" className="underline-offset-2 hover:underline">
             Admin

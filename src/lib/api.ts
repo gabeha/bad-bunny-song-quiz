@@ -55,16 +55,45 @@ export async function submitRound(
 }
 
 export async function submitScore(roundId: string): Promise<void> {
+  const { error } = await supabase.functions.invoke("submit-score", {
+    body: { roundId },
+    headers: await authHeader(),
+  });
+  if (error) throw error;
+}
+
+async function authHeader(): Promise<Record<string, string>> {
   const {
     data: { session },
   } = await supabase.auth.getSession();
-  if (!session) throw new Error("Please sign in to submit your score.");
+  if (!session) throw new Error("Please sign in.");
+  return { Authorization: `Bearer ${session.access_token}` };
+}
 
-  const { error } = await supabase.functions.invoke("submit-score", {
-    body: { roundId },
-    headers: { Authorization: `Bearer ${session.access_token}` },
-  });
+export async function claimUnlocks(roundId: string): Promise<number> {
+  const { data, error } = await supabase.functions.invoke<{ unlocked: number }>(
+    "claim-unlocks",
+    { body: { roundId }, headers: await authHeader() },
+  );
   if (error) throw error;
+  return data?.unlocked ?? 0;
+}
+
+export interface CollectionItem {
+  title: string;
+  artist: string;
+  album: string | null;
+  spotifyUrl: string | null;
+  unlockedAt: string;
+  fullUrl: string | null;
+}
+
+export async function fetchCollection(): Promise<CollectionItem[]> {
+  const { data, error } = await supabase.functions.invoke<{
+    items: CollectionItem[];
+  }>("get-collection", { body: {}, headers: await authHeader() });
+  if (error) throw error;
+  return data?.items ?? [];
 }
 
 export type LeaderboardScope = "alltime" | "weekly";

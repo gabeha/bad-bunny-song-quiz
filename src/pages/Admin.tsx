@@ -89,8 +89,10 @@ export default function Admin() {
     }
     setStatus("working");
     const id = crypto.randomUUID();
-    const snippetKey = `${id}.mp3`;
-    const fullKey = `${id}.mp3`;
+    // Storage keys are random and independent of the song id, so the snippet
+    // URL never reveals which song it is.
+    const snippetKey = `${crypto.randomUUID()}.mp3`;
+    const fullKey = `${crypto.randomUUID()}.mp3`;
 
     try {
       setMessage("Cutting snippet…");

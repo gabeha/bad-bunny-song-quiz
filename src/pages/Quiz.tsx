@@ -5,16 +5,19 @@ import WindowWrapper from "@/components/window-wrapper.tsx";
 import QuestionView from "@/components/question-view.tsx";
 import ResultsView from "@/components/results-view.tsx";
 import {
+  claimUnlocks,
   startRound,
   submitRound,
   type AnswerInput,
   type StartRoundResponse,
   type SubmitRoundResponse,
 } from "@/lib/api.ts";
+import { useAuth } from "@/lib/auth.tsx";
 
 type Phase = "loading" | "playing" | "submitting" | "results" | "error";
 
 export default function Quiz() {
+  const { user } = useAuth();
   const [phase, setPhase] = useState<Phase>("loading");
   const [round, setRound] = useState<StartRoundResponse | null>(null);
   const [index, setIndex] = useState(0);
@@ -57,12 +60,14 @@ export default function Quiz() {
         const res = await submitRound(round.roundId, answersRef.current);
         setResult(res);
         setPhase("results");
+        // If signed in, unlock the songs they got right (fire-and-forget).
+        if (user) void claimUnlocks(round.roundId).catch(() => {});
       } catch (e) {
         setErrorMsg(e instanceof Error ? e.message : "Failed to submit.");
         setPhase("error");
       }
     },
-    [round],
+    [round, user],
   );
 
   return (

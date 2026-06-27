@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils.ts";
-import { submitScore, type SubmitRoundResponse } from "@/lib/api.ts";
+import {
+  claimUnlocks,
+  submitScore,
+  type SubmitRoundResponse,
+} from "@/lib/api.ts";
 import { useAuth } from "@/lib/auth.tsx";
 import SignInModal from "@/components/sign-in-modal.tsx";
 
@@ -33,6 +37,8 @@ export default function ResultsView({
     setErrorMsg("");
     try {
       await submitScore(roundId);
+      // Also unlock the songs they got right (covers signing in at this screen).
+      void claimUnlocks(roundId).catch(() => {});
       setSubmitState("done");
     } catch (e) {
       setErrorMsg(e instanceof Error ? e.message : "Failed to submit.");
