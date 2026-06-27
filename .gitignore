@@ -9,12 +9,13 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
-# production
+# build output
+/dist
 /build
+/.next
+
+# vite
+/.vite
 
 # misc
 .DS_Store
