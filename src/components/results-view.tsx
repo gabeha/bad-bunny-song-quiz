@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import confetti from "canvas-confetti";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils.ts";
 import {
@@ -31,6 +32,18 @@ export default function ResultsView({
 
   const correctCount = result.perQuestion.filter((q) => q.correct).length;
   const total = result.perQuestion.length;
+
+  useEffect(() => {
+    if (total > 0 && correctCount / total >= 0.6) {
+      confetti({
+        particleCount: 120,
+        spread: 75,
+        origin: { y: 0.35 },
+        colors: ["#ef4444", "#facc15", "#a855f7"],
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const doSubmit = async () => {
     setSubmitState("submitting");

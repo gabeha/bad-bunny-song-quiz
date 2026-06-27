@@ -18,6 +18,20 @@ export default function App() {
           <Route path="/collection" element={<Collection />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
+        <footer className="mt-6 text-center text-[11px] leading-relaxed text-white/60">
+          Fan-made for fun. All songs &amp; audio belong to their respective
+          owners. Not affiliated with Bad Bunny.
+          <br />
+          Built by{" "}
+          <a
+            href="https://gabrielhauss.com"
+            target="_blank"
+            rel="noreferrer"
+            className="underline underline-offset-2 hover:text-white/90"
+          >
+            gabrielhauss.com
+          </a>
+        </footer>
       </div>
     </div>
   );

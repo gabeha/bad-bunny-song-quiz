@@ -33,6 +33,7 @@ export default function QuestionView({
     initPlayback,
   );
   const [locked, setLocked] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -68,11 +69,15 @@ export default function QuestionView({
   const choose = (chosenIndex: number) => {
     if (locked) return;
     setLocked(true);
+    setSelectedIndex(chosenIndex);
     audioRef.current?.pause();
     const now = Date.now();
     const answeredState = playbackReducer(state, { type: "ANSWER", atMs: now }, BOUNDS);
     const ms = timeToAnswerMs(answeredState) ?? NO_PLAY_PENALTY_MS;
-    onAnswer({ chosenIndex, msToAnswer: ms, replays: answeredState.replays });
+    // Brief beat so the player sees their pick register before advancing.
+    window.setTimeout(() => {
+      onAnswer({ chosenIndex, msToAnswer: ms, replays: answeredState.replays });
+    }, 350);
   };
 
   const playing = state.status === "playing";
@@ -81,11 +86,28 @@ export default function QuestionView({
     <div className="flex flex-1 flex-col gap-5 bg-gray-100 p-4 sm:p-6">
       <audio ref={audioRef} src={question.snippetUrl} preload="auto" />
 
-      <div className="flex items-center justify-between text-sm font-bold text-gray-500">
-        <span>
-          Question {index + 1} / {total}
-        </span>
-        {state.replays > 0 && <span>↻ {state.replays} replays</span>}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between text-sm font-bold text-gray-500">
+          <span>
+            Question {index + 1} / {total}
+          </span>
+          {state.replays > 0 && <span>↻ {state.replays}</span>}
+        </div>
+        <div className="flex gap-1">
+          {Array.from({ length: total }).map((_, i) => (
+            <span
+              key={i}
+              className={cn(
+                "h-1.5 flex-1 rounded-full",
+                i < index
+                  ? "bg-gradient-to-r from-red-500 to-purple-600"
+                  : i === index
+                    ? "bg-yellow-400"
+                    : "bg-gray-300",
+              )}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="flex flex-col items-center gap-3 py-2">
@@ -112,20 +134,27 @@ export default function QuestionView({
       </p>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {question.options.map((option, i) => (
-          <button
-            key={option}
-            type="button"
-            disabled={locked}
-            onClick={() => choose(i)}
-            className={cn(
-              "border-r-4 border-b-4 border-l-4 border-t-4 border-r-gray-500 border-b-gray-500 border-l-white border-t-white bg-gray-300 px-4 py-4 text-base font-bold text-gray-900 transition-transform",
-              "hover:scale-[0.98] active:scale-95 disabled:opacity-60",
-            )}
-          >
-            {option}
-          </button>
-        ))}
+        {question.options.map((option, i) => {
+          const isSelected = selectedIndex === i;
+          return (
+            <button
+              key={option}
+              type="button"
+              disabled={locked}
+              onClick={() => choose(i)}
+              className={cn(
+                "border-r-4 border-b-4 border-l-4 border-t-4 px-4 py-4 text-base font-bold transition-all",
+                "hover:scale-[0.98] active:scale-95",
+                isSelected
+                  ? "border-r-gray-300 border-b-gray-300 border-l-gray-600 border-t-gray-600 bg-yellow-300 text-gray-900"
+                  : "border-r-gray-500 border-b-gray-500 border-l-white border-t-white bg-gray-300 text-gray-900",
+                locked && !isSelected && "opacity-50",
+              )}
+            >
+              {option}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
