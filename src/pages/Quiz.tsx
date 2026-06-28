@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
 import WindowWrapper from "@/components/window-wrapper.tsx";
 import QuestionView from "@/components/question-view.tsx";
 import ResultsView from "@/components/results-view.tsx";
+import { QuestionSkeleton } from "@/components/skeleton.tsx";
 import {
   claimUnlocks,
   startRound,
@@ -77,11 +77,7 @@ export default function Quiz() {
         className="flex-1"
         contentClassName="flex-1"
       >
-        {phase === "loading" && (
-          <Centered>
-            <p className="text-lg font-bold text-gray-700">Loading round…</p>
-          </Centered>
-        )}
+        {phase === "loading" && <QuestionSkeleton />}
 
         {phase === "error" && (
           <Centered>
@@ -107,9 +103,10 @@ export default function Quiz() {
         )}
 
         {phase === "submitting" && (
-          <Centered>
-            <p className="text-lg font-bold text-gray-700">Scoring…</p>
-          </Centered>
+          <div className="flex flex-1 flex-col items-center justify-center gap-3 bg-gray-100 p-10">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-gray-700" />
+            <p className="text-lg font-bold text-gray-700">Scoring your round…</p>
+          </div>
         )}
 
         {phase === "results" && result && round && (
@@ -120,12 +117,6 @@ export default function Quiz() {
           />
         )}
       </WindowWrapper>
-
-      <div className="mt-3 text-center">
-        <Link to="/" className="text-sm font-semibold text-white/80 underline">
-          ← Back home
-        </Link>
-      </div>
     </div>
   );
 }

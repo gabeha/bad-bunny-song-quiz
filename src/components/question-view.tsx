@@ -7,6 +7,13 @@ import {
   timeToAnswerMs,
   type SnippetBounds,
 } from "@/game/snippetPlayback.ts";
+import {
+  connectMediaElement,
+  hasAudioStarted,
+  markAudioStarted,
+  resumeAudio,
+} from "@/lib/audio-viz.ts";
+import Visualizer from "@/components/visualizer.tsx";
 import type { AnswerInput, QuizQuestion } from "@/lib/api.ts";
 
 const BOUNDS: SnippetBounds = { startSec: 0, endSec: Number.POSITIVE_INFINITY };
@@ -38,15 +45,25 @@ export default function QuestionView({
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    const onPlay = () => dispatch({ type: "PLAY", atMs: Date.now() });
+    connectMediaElement(audio);
+    const onPlay = () => {
+      resumeAudio();
+      markAudioStarted();
+      dispatch({ type: "PLAY", atMs: Date.now() });
+    };
     const onPause = () => dispatch({ type: "PAUSE" });
     const onEnded = () =>
       dispatch({ type: "TICK", currentSec: Number.POSITIVE_INFINITY });
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
     audio.addEventListener("ended", onEnded);
-    // Try to autoplay; browsers may block until a user gesture, which is fine.
-    audio.play().catch(() => {});
+    // The first question needs a tap (browsers block autoplay). Once the player
+    // has started audio once, later questions auto-play (the answer click that
+    // advances the round counts as the activating gesture).
+    if (hasAudioStarted()) {
+      resumeAudio();
+      audio.play().catch(() => {});
+    }
     return () => {
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
@@ -84,7 +101,12 @@ export default function QuestionView({
 
   return (
     <div className="flex flex-1 flex-col gap-5 bg-gray-100 p-4 sm:p-6">
-      <audio ref={audioRef} src={question.snippetUrl} preload="auto" />
+      <audio
+        ref={audioRef}
+        src={question.snippetUrl}
+        crossOrigin="anonymous"
+        preload="auto"
+      />
 
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between text-sm font-bold text-gray-500">
@@ -111,21 +133,30 @@ export default function QuestionView({
       </div>
 
       <div className="flex flex-col items-center gap-3 py-2">
-        <button
-          type="button"
-          onClick={togglePlay}
-          aria-label={playing ? "Pause snippet" : "Play snippet"}
-          className="play-pause-button flex h-24 w-24 items-center justify-center"
-        >
-          {playing ? (
-            <Pause className="h-10 w-10 fill-current text-gray-700" />
-          ) : (
-            <Play className="h-10 w-10 fill-current text-gray-700" />
+        <div className="relative flex h-24 w-24 items-center justify-center">
+          {state.status === "idle" && (
+            <span className="absolute inset-0 animate-ping rounded-full bg-yellow-400/50" />
           )}
-        </button>
-        <EqualizerBars active={playing} />
-        <p className="text-sm font-semibold text-gray-500">
-          {playing ? "Listening..." : "Tap to play the ad-lib"}
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={playing ? "Pause snippet" : "Play snippet"}
+            className="play-pause-button relative flex h-24 w-24 items-center justify-center"
+          >
+            {playing ? (
+              <Pause className="h-10 w-10 fill-current text-gray-700" />
+            ) : (
+              <Play className="ml-1 h-10 w-10 fill-current text-gray-700" />
+            )}
+          </button>
+        </div>
+        <Visualizer active={playing} className="h-12 w-full max-w-xs" />
+        <p className="text-sm font-semibold text-gray-600">
+          {playing
+            ? "Listening..."
+            : state.status === "idle"
+              ? "Tap ▶ to hear the ad-lib"
+              : "Tap ▶ to replay"}
         </p>
       </div>
 
@@ -156,26 +187,6 @@ export default function QuestionView({
           );
         })}
       </div>
-    </div>
-  );
-}
-
-function EqualizerBars({ active }: { active: boolean }) {
-  return (
-    <div className="flex h-8 items-end gap-1">
-      {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-        <span
-          key={i}
-          className={cn(
-            "w-1.5 rounded-sm bg-gradient-to-t from-yellow-400 to-red-500",
-            active ? "animate-pulse" : "",
-          )}
-          style={{
-            height: active ? `${30 + ((i * 37) % 70)}%` : "15%",
-            animationDelay: `${i * 90}ms`,
-          }}
-        />
-      ))}
     </div>
   );
 }

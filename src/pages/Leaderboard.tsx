@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import WindowWrapper from "@/components/window-wrapper.tsx";
+import { RowsSkeleton } from "@/components/skeleton.tsx";
 import { cn } from "@/lib/utils.ts";
 import {
   fetchLeaderboard,
@@ -58,11 +59,7 @@ export default function Leaderboard() {
             ))}
           </div>
 
-          {loading && (
-            <p className="py-8 text-center text-sm font-bold text-gray-500">
-              Loading…
-            </p>
-          )}
+          {loading && <RowsSkeleton rows={8} />}
           {error && (
             <p className="py-8 text-center text-sm font-bold text-red-600">
               {error}

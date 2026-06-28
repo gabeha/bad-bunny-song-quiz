@@ -95,6 +95,20 @@
   animation: shake 0.4s;
 }
 
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq 0.9s ease-in-out infinite;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
